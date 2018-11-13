@@ -5,8 +5,10 @@ class PostsNew extends Component {
  
   // field is the component Field has event handler to write up JSX Field component
   renderField(field) {
+    const { meta: { touched, error } } = field;
+    const className = `form-group ${touched && error ? 'has-danger' : ''}`;
     return (
-      <div className="form-group">
+      <div className={className}>
       <label >{field.label}</label>
         <input
           className="form-control"
@@ -14,14 +16,23 @@ class PostsNew extends Component {
           type="text"
           {...field.input}
         />
-        {field.meta.error}
+        <div className="text-help">
+        {/* field.meta.touched ? field.meta.error */}
+        {touched ? error : ''}
+        </div>
       </div>
     );
   }
 
+  onSubmit(values) {
+    console.log(values);
+  }
+
   render() {
+    const { handleSubmit } = this.props;
+
     return (
-      <form action="">
+      <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
       {/* 3 field for each form 
       Add props that passes in through field obj */}
         <Field 
@@ -40,6 +51,7 @@ class PostsNew extends Component {
           name="content"
           component={this.renderField}
         />
+        <button type="submit" className="btn btn-primary">Submit</button>
       </form>
     );
   }
