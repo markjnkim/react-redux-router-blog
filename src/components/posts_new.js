@@ -14,6 +14,7 @@ class PostsNew extends Component {
           type="text"
           {...field.input}
         />
+        {field.meta.error}
       </div>
     );
   }
@@ -43,10 +44,32 @@ class PostsNew extends Component {
     );
   }
 }
+// values are the user entered data that is being validated
+function validate(values) {
+  
+  const errors = {};
+
+  // Validate the input from 'values' obj
+  // If errors = null, reduxForm will submit input
+  // If errors != null, reduxForm will not submit
+  // errors.title is same as field attribute 
+  if (!values.title || values.title.length < 3) {
+    errors.title = "Enter a title at least 3 characters log";
+  }
+  if (!values.categories || values.categories.length < 3) {
+    errors.categories = "Enter a category at least 3 characters log";
+  }
+  if (!values.content || values.content.length < 3) {
+    errors.content = "Enter some more content";
+  }
+  return errors;
+}
+
 // similar to the connect helper now handled by reduxForm
 // possible to display multiple forms \/
 // Make sure value in object is a unique string
 export default reduxForm({
+  validate,
   form: 'PostsNewForm'
 })(PostsNew);
 
