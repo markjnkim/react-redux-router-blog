@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form'; 
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { createPost } from '../actions';
 
 class PostsNew extends Component {
- 
   // field is the component Field has event handler to write up JSX Field component
   renderField(field) {
     const { meta: { touched, error } } = field;
@@ -23,9 +25,11 @@ class PostsNew extends Component {
       </div>
     );
   }
-
+// action creator to post data
   onSubmit(values) {
-    console.log(values);
+    // programatic navigation after post request
+    this.props.history.push('/');
+    this.props.createPost(values);
   }
 
   render() {
@@ -52,6 +56,9 @@ class PostsNew extends Component {
           component={this.renderField}
         />
         <button type="submit" className="btn btn-primary">Submit</button>
+      <Link className="btn btn-warning" to="/">
+      Cancel
+      </Link>
       </form>
     );
   }
@@ -83,6 +90,8 @@ function validate(values) {
 export default reduxForm({
   validate,
   form: 'PostsNewForm'
-})(PostsNew);
+})(
+  connect(null, { createPost })(PostsNew)
+  );
 
 // PostsEdit.js
