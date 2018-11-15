@@ -8,6 +8,20 @@ export default function(state={}, action) {
       // OBJECT CONVERSION  [post1, post2]   ->
       // { 4: post }  USING LODASH
       return _.mapKeys(action.payload.data, 'id');
+    case FETCH_POST:
+    // action.payload.data is the post we want to fetch
+    // using the cache of posts already fetched
+    // action is from axios
+    // adding new post to current cache state
+
+    // const post = action.payload.data;
+    // const newState = { ...state };
+    // // post is now id
+    // this creates { id:post }
+    // newState[post.id] = post;
+    // return newState;
+
+      return { ...state, [action.payload.data.id]: action.payload.data };
     default:
       return state;
   }
