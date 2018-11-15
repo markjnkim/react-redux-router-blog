@@ -6,12 +6,17 @@ class PostsShow extends Component {
   componentDidMount() {
     // react-router method 
     // params contains wildcards in url
-    const { id } = this.props.match.params.id;
+    const { id } = this.props.match.params;
     this.props.fetchPost(id);
   }
 
   render() {
     const { post } = this.props;
+
+    if (!post) {
+      return <div>Loading . . .</div>;
+    }
+
     return (
       <div>
         <h3>{post.title}</h3>
@@ -28,6 +33,9 @@ class PostsShow extends Component {
 // return just a single post
 // allows component single responsibility (Show Post)
 // mapStateToProps selects pc off global state obj
+// Common mistake is to render before data is acquired.  need to waiting until post is defined.
+// Taking from Application State
+// Destructuring
 function mapStateToProps({ posts }, ownProps) {
   return { post: posts[ownProps.match.params.id] };
 

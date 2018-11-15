@@ -75,10 +75,10 @@ function validate(values) {
   // If errors != null, reduxForm will not submit
   // errors.title is same as field attribute 
   if (!values.title || values.title.length < 3) {
-    errors.title = "Enter a title at least 3 characters log";
+    errors.title = "Enter a title at least 3 characters long";
   }
   if (!values.categories || values.categories.length < 3) {
-    errors.categories = "Enter a category at least 3 characters log";
+    errors.categories = "Enter a category at least 3 characters long";
   }
   if (!values.content || values.content.length < 3) {
     errors.content = "Enter some more content";
