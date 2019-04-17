@@ -28,7 +28,7 @@ class PostsIndex extends Component {
 
   render() {
     return (
-      <div>
+      <div className="div-container">
         <div className="text-xs-right">
         {/* anchor tag in React Router */}
         <Link className="btn btn-primary" to="/posts/new">

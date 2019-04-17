@@ -32,7 +32,7 @@ class PostsShow extends Component {
       <div>
         <Link to="/" className="btn btn-primary">Home</Link>
         <button onClick={this.onDeleteClick.bind(this)}className="btn btn-danger pull-xs-right">Delete Post</button>
-        <h3>{post.title}</h3>
+        <h3 className="postTitle">{post.title}</h3>
         <h6>Categories: {post.categories}</h6>
         <p>{post.content}</p>
       </div>

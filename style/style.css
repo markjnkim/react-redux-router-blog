@@ -1,3 +1,15 @@
+body {
+  padding-top: 10px;
+  height: 100%;
+}
+
 form a {
   margin-left: 5px;
+}
+div.container {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h3.postTitle {
+  padding-top: 10px;
 }
